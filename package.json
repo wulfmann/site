@@ -1,0 +1,16 @@
+{
+  "name": "site",
+  "scripts": {
+    "dev": "next",
+    "build": "next build && next export"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "typescript": "latest",
+    "sass": "latest"
+  }
+}
