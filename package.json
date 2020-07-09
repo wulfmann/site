@@ -11,6 +11,8 @@
   },
   "devDependencies": {
     "typescript": "latest",
-    "sass": "latest"
+    "sass": "latest",
+    "@types/react": "latest",
+    "@types/node": "latest"
   }
 }
