@@ -33,6 +33,29 @@ body {
   color: var(--foreground);
 }
 
+header {
+  padding: 1rem;
+  border-bottom: 1px var(--accent-1) solid;
+}
+
+main {
+  padding: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--foreground);
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  
+  li {
+    margin: 0;
+  }
+}
+
 h1,
 p {
   margin: 0;
