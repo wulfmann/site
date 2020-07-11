@@ -1,6 +1,10 @@
+import Layout from '../components/layouts/default';
+
 function Home() {
   return (
-    <div>home</div>
+    <>
+      <Layout />
+    </>
   );
 }
 
