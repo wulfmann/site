@@ -37,3 +37,11 @@ h1,
 p {
   margin: 0;
 }
+
+.button {
+  border-radius: .5rem;
+  background-color: var(--accent-1);
+  cursor: pointer;
+  padding: .125rem 1rem;
+  display: inline-block;
+}
