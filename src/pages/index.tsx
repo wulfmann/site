@@ -6,17 +6,18 @@ function Home() {
     <>
       <Head>
         <title>Joe Snell</title>
-        <meta name="description" content="Joe Snell -Designer/Developer" />
+        <meta name="description" content="Joe Snell - Designer/Developer" />
       </Head>
 
       <Layout>
         <ul>
           <li><a href="https://github.com/wulfmann">Github</a></li>
           <li><a href="https://twitter.com/wlfmnn">Twitter</a></li>
-          
-          <div className="button">
-            <a href="mailto:joe@snell.im">Message Me</a>
-          </div>
+          <li>
+            <div className="button">
+              <a href="mailto:joe@snell.im">Message Me</a>
+            </div>
+          </li>
         </ul>
       </Layout>
     </>
