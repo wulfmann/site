@@ -55,15 +55,15 @@ footer {
 }
 
 .default-layout {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  height: -webkit-fill-available;
+  height: 100vh;
+  grid-template-rows: 3rem 1fr 3rem;
 }
 
 main {
   padding: 1rem;
   width: 100%;
-  flex: 1 1 auto;
 }
 
 a {
