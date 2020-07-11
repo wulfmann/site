@@ -1,8 +1,14 @@
+import Head from 'next/head';
 import Layout from '../components/layouts/default';
 
 function Home() {
   return (
     <>
+      <Head>
+        <title>Joe Snell</title>
+        <meta name="description" content="Joe Snell -Designer/Developer" />
+      </Head>
+
       <Layout>
         <ul>
           <li><a href="https://github.com/wulfmann">Github</a></li>
