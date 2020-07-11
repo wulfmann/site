@@ -34,8 +34,19 @@ body {
 }
 
 header {
-  padding: 1rem;
   border-bottom: 1px var(--accent-1) solid;
+}
+
+footer {
+  border-top: 1px var(--accent-1) solid;
+}
+
+header,
+footer {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .title {
@@ -45,6 +56,9 @@ header {
 
 main {
   padding: 1rem;
+  width: 100%;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 a {
