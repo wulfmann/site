@@ -54,11 +54,16 @@ footer {
   font-weight: 700;
 }
 
+.default-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 main {
   padding: 1rem;
   width: 100%;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  flex: 1;
 }
 
 a {
@@ -72,6 +77,10 @@ ul {
   
   li {
     margin: 0;
+    
+    a {
+      font-size: 2rem;
+    }
   }
 }
 
@@ -85,5 +94,5 @@ p {
   background-color: var(--accent-1);
   cursor: pointer;
   padding: .125rem 1rem;
-  display: inline-block;
+  font-size: 2rem;
 }
