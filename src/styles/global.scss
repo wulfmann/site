@@ -38,6 +38,11 @@ header {
   border-bottom: 1px var(--accent-1) solid;
 }
 
+.title {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
 main {
   padding: 1rem;
 }
