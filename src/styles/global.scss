@@ -72,6 +72,12 @@ a {
   color: var(--foreground);
   padding-bottom: 1px;
   border-bottom: 2px var(--accent-1) solid;
+  transition: border-color 150ms ease-in-out;
+  
+  &:hover,
+  &:active {
+    border-color: var(--foreground);
+  }
 }
 
 ul {
