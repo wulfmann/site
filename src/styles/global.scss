@@ -136,10 +136,16 @@ h1 {
   border-radius: 1rem;
   display: grid;
   grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr;
+  align-items: center;
+  
+  &_info,
+  &_actions {
+    height: 100%;
+  }
   
   &_info {
     padding-right: 1rem;
-    display: block;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
