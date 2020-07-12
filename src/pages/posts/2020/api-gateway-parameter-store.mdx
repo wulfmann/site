@@ -1,0 +1,282 @@
+---
+title: API Gateway Parameter Store Integration
+layout: post
+description: Integrating AWS API Gateway with SSM Parameter Store
+tags:
+- aws
+- guide
+---
+
+## Introduction
+
+Sometimes you might be in a situation where you need to fetch a value from the client. A public API key is a common example.
+
+Much of the time you can inject this as an environment variable as part of a deployment process, but sometimes this isn't possible. Another option is to create an API endpoint that returns the value, and then call that endpoint from the client. This is the option we will explore.
+
+API Gateway has a Lambda integration that is very common, but it also has many other integrations with specific AWS services. One of which is Systems Manager.
+
+This guide will walk you through contructing a CDK stack, that creates an API Gateway which integrates with Parameter Store.
+
+## How to use this guide
+
+### Glossary
+
+* [API Gateway](https://aws.amazon.com/api-gateway/): An AWS service that provides an api interface to various types of integrations.
+* [Systems Manager (SSM)](https://aws.amazon.com/systems-manager/): An AWS service that provides tools and automation.
+* [Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html): An AWS service in the SSM family that provides secure storage of parameters.
+* [Cloudformation](https://aws.amazon.com/cloudformation/): An AWS service that allows you to define AWS resources as configuration files (Infrastructure-as-Code).
+* [CDK](https://aws.amazon.com/cdk/): An open-source AWS project that allows you to write gour cloudformation templates in a programming language.
+
+### Import Statements
+
+When a new module is introduced, you will see an import at the top of the snippet. Here is an example: `import * as ssm from '@aws-cdk/aws-ssm';`. When you see these, you should group them at the top of your file with the other imports.
+
+## Overview
+
+### Goals
+
+* Use API Gateway to fetch a parameter from SSM
+* Use CDK to define a cloudformation stack with the aforementioned resources
+
+### Requirements
+
+* [Node>=12.x](https://nodejs.org)
+* [AWS CDK](https://github.com/aws/aws-cdk)
+* Aws Account
+
+### Steps
+
+1. [Create a CDK App](#create-a-cdk-app)
+2. [Add an SSM Parameter](#add-an-ssm-parameter)
+3. [Add an API Gateway](#add-an-api-gateway)
+4. [Add an IAM Role](#add-an-iam-role)
+5. [Add a Method and an Integration](#add-method-integration)
+6. [Deploy & Test](#test)
+7. [Cleanup](#cleanup)
+8. [Extra Credit](#extra-credit)
+
+## Implementation
+
+You can view the complete example [here](https://github.com/wulfmann/cdk-experiments/tree/master/api-gateway-ssm).
+
+### <a id="create-a-cdk-app"></a>Create a CDK App
+
+If you've already created a CDK App that you'd like to use, you can skip to [Step 2](#add-an-ssm-parameter).
+
+<!-- TODO -->
+
+### <a id="add-an-ssm-parameter"></a>Add an SSM Parameter
+
+If you already have a parameter you'd like to use, you can skip to [Step 3](#add-an-api-gateway).
+
+To add a string parameter with cdk, we need to pull in the `@aws-cdk/aws-ssm` module, and construct a new `StringParameter`. We will use `key-parameter` as our name and `my-key` as our value.
+
+```typescript
+import * as ssm from '@aws-cdk/aws-ssm';
+
+const parameterName = 'key-parameter';
+const parameter = new ssm.StringParameter(this, 'Parameter', {
+    stringValue: 'my-key',
+    parameterName,
+    type: ssm.ParameterType.STRING
+});
+```
+
+### <a id="add-an-api-gateway"></a>Add an API Gateway
+
+To add an API Gateway, we need to pull in the `@aws-cdk/aws-apigateway` module.
+
+```typescript
+import * as ag from '@aws-cdk/aws-apigateway';
+
+const api = new ag.RestApi(this, 'Api');
+```
+
+### <a id="add-an-iam-role"></a>Add an IAM Role
+
+API Gateway is going to use an IAM Role to interact with our integration. As a result, this Role needs permissions to read our parameter value: `ssm:GetParameter`. You can see the complete list of SSM Permissions [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awssystemsmanager.html).
+
+If you already have a role that you'd like to use, you can use the `iam.Role.fromRoleArn` static method to construct a reference.
+
+```typescript
+const role = new iam.Role(this, 'Role', {
+    assumedBy: new iam.ServicePrincipal('apigateway.amazonaws.com')
+});
+```
+
+**Assign Permission**
+
+If you are using a preexisting parameter, you can either construct a reference by using the `ssm.Parameter.fromParameterArn` static method, or you can attach a policy statement directly with `role.addToPolicy`.
+
+```typescript
+parameter.grantRead(role);
+```
+
+### <a id="add-method-integration"></a>Add a Method and an Integration
+
+#### Add a Resource
+
+```typescript
+const keyResource = api.root.addResource('key');
+keyResource.addCorsPreflight({ allowOrigins: ['*'] }); // Enable CORS
+```
+
+#### Add Integration
+
+```typescript
+new ag.AwsIntegration({
+    service: 'ssm',
+    action: 'GetParameter',
+    actionParameters: {
+        Name: parameterName
+    },
+    integrationHttpMethod: 'POST',
+    options: {
+        credentialsRole: role,
+        integrationResponses: [
+            {
+                statusCode: '200',
+                responseTemplates: {
+                    'application/json': JSON.stringify({
+                        value: "$input.path('$.GetParameterResponse.GetParameterResult.Parameter.Value')"
+                    })
+                }
+            }
+        ]
+    }
+})
+```
+
+This is the meat of our implementation. We are using the `AwsIntegration` class to construct an AWS Service Integration. We specify the properties of the API call we are making (values gathered from [here](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParameter.html)).
+
+#### Response Template Breakdown
+
+We are taking advantage of [API Gateway Mapping Templates](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html) to map the value of our ssm api call to a response template.
+
+`$input.path(...)`
+
+This lets us expand the `$input` object into json, and then get the value of a particular json path.
+
+`$.GetParameterResponse.GetParameterResult.Parameter.Value`
+
+Here we are drilling into the json response of the `GetParameter` [API Call](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParameter.html).
+
+Example:
+
+```json
+{
+    "GetParameterResponse": {
+        "GetParameterResult": {
+            "Parameter": {
+                "Value": "my-key"
+            }
+        }
+    }
+}
+```
+
+#### Attach Method to Resource
+
+```typescript
+keyResource.addMethod('GET', integration, {
+    methodResponses: [{ statusCode: '200' }]
+});
+```
+
+This is relatively simple, but we need to add the method to the resource, and then specify that the endpoing can return a `200` status code. This is required as we have specified an integration response template for this status code. If you don't include this, cloudformation will error.
+
+### <a id="test"></a>Deploy & Test
+
+Deploy the stack:
+
+```bash
+yarn deploy
+```
+
+In the output towards the bottom you should see something that looks like this:
+
+```bash
+ ✅  ApiGatewaySSMStack
+
+Outputs:
+ApiGatewaySSMStack.ApiEndpointXXXXXXXX = https://XXXXXXXX.execute-api.us-east-1.amazonaws.com/prod/
+```
+
+This is your `$API_GATEWAY_ENDPOINT`. We can now test our integration by making a request like the following:
+
+```bash
+$ curl $API_GATEWAY_ENDPOINT/key
+
+{"value":"my-key"}
+```
+
+### <a id="cleanup"></a>Cleanup
+
+To remove the stack we just created, you can call:
+
+```bash
+cdk destroy
+```
+
+## <a id="extra-credit"></a>Extra Credit
+
+### Abstract the SSM Integration
+
+We can abstract some of the ssm integration pieces to make it simpler and reusable.
+
+```typescript
+// constructs/ssm-integration.ts
+
+import * as ag from '@aws-cdk/aws-apigateway';
+import * as iam from '@aws-cdk/aws-iam';
+
+export interface GetParameterProps {
+    parameterName: string;
+    role: iam.Role | iam.IRole;
+}
+
+export class SSMIntegration {
+    public static getParameter(props: GetParameterProps, options?: ag.IntegrationOptions) {
+        return new ag.AwsIntegration({
+            service: 'ssm',
+            action: 'GetParameter',
+            actionParameters: {
+                Name: props.parameterName
+            },
+            integrationHttpMethod: 'GET',
+            options: {
+                credentialsRole: props.role,
+                ...options
+            }
+        })
+    }
+}
+```
+
+Here is our example from above, but using our new abstracted construct:
+
+```typescript
+// stacks/api-gateway-ssm.ts
+
+import { SSMIntegration } from '../constructs/ssm-integration';
+
+const integration = SSMIntegration.getParameter({ parameterName, role }, {
+    integrationResponses: [
+        {
+            statusCode: '200',
+            responseTemplates: {
+                'application/json': JSON.stringify({
+                    value: "$input.path('$.GetParameterResponse.GetParameterResult.Parameter.Value')"
+                })
+            }
+        }
+    ]
+});
+keyResource.addMethod('GET', integration, {
+    methodResponses: [{ statusCode: '200' }]
+});
+```
+
+### Next Steps
+
+As an additionaly project, you could add some additional parameter store api calls to our `SSMIntegration` class. Calls such as: `GetParameters`, or adding the `WithDecryption` option to our existing method to fetch secure strings.
