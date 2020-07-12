@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Layout from '../components/layouts/default';
+import Layout from '../../components/layouts/default';
 
 function Tag({ tag }) {
   return (
