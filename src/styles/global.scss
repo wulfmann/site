@@ -56,9 +56,8 @@ footer {
 
 .default-layout {
   display: grid;
-  height: -webkit-fill-available;
-  height: 100vh;
-  grid-template-rows: 3rem 1fr 3rem;
+  min-heighr: 100%;
+  grid-template-rows: auto 1fr auto;
 }
 
 main {
