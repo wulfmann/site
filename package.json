@@ -1,5 +1,7 @@
 {
   "name": "site",
+  "entry_script": "dev",
+  "entry_file": "src/pages/index.tsx",
   "scripts": {
     "dev": "next",
     "build": "next build && next export"
