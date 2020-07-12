@@ -148,9 +148,12 @@ h2 {
     display: flex;
     align-items: center;
     border-left: 1px var(--accent-1) solid;
+    padding-left: 1rem;
     
     a {
       text-transform: uppercase;
+      text-decoration: none;
+      display: block;
     }
   }
 }
