@@ -118,6 +118,14 @@ h2 {
   }
 }
 
+.projects {
+  .project {
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
+  }
+}
+
 .project {
   padding: 1rem;
   border: 1px var(--accent-1) solid;
@@ -139,9 +147,10 @@ h2 {
   &_actions {
     display: flex;
     align-items: center;
-  }
-
-  a {
     border-left: 1px var(--accent-1) solid;
+    
+    a {
+      text-transform: uppercase;
+    }
   }
 }

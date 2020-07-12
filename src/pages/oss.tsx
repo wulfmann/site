@@ -35,7 +35,7 @@ function OSS() {
       <Layout>
         <h1>Open Source Software</h1>
         
-        <div>
+        <div className="projects">
           {
             projects.map((project, idx) => (
               <Project
