@@ -1,7 +1,13 @@
 function Footer() {
   return (
     <footer>
-      Copyright 2020
+        <ul>
+          <li><a href="https://github.com/wulfmann">Github</a></li>
+          <li><a href="https://twitter.com/wlfmnn">Twitter</a></li>
+          <li>
+            <a href="mailto:joe@snell.im">Email</a>
+          </li>
+        </ul>
     </footer>
   );
 }

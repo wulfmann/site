@@ -10,15 +10,7 @@ function Home() {
       </Head>
 
       <Layout>
-        <ul>
-          <li><a href="https://github.com/wulfmann">Github</a></li>
-          <li><a href="https://twitter.com/wlfmnn">Twitter</a></li>
-          <li>
-            <div className="button">
-              <a href="mailto:joe@snell.im">Message Me</a>
-            </div>
-          </li>
-        </ul>
+        <p>Designer & Developer</p>
       </Layout>
     </>
   );
