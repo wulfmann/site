@@ -3,12 +3,15 @@ import Layout from '../components/layouts/default';
 
 function Project({ title, href, description }) {
   return (
-    <a className="project" href={href}>
+    <div className="project">
       <div className="project_info">
         <h4>{title}</h4>
         <p>{description}</p>
       </div>
-    </a>
+      <div className="project_actions">
+        <a href={href}>View</a>
+      </div>
+    </div>
   );
 }
 
