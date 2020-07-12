@@ -31,9 +31,14 @@ function OSS() {
         <h1>Open Source Software</h1>
         
         <div>
-          {projects.map((project, idx) => (
-            <Project {...project} key={idx} />
-          )});
+          {
+            projects.map((project, idx) => (
+              <Project
+                {...project}
+                key={idx}
+              />
+            ))
+          }
         </div>
       </Layout>
     </>
