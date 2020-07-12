@@ -13,6 +13,8 @@ function Post(frontMatter) {
       <Header />
       
       <main>
+        <h1>{frontMatter.title}</h1>
+
         <div className="tags">
           {frontMatter.tags.map((tag, idx) => (
             <Link href={`/tags/${tag}`}>
