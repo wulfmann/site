@@ -122,6 +122,23 @@ h2 {
   padding: 1rem;
   border: 1px var(--accent-1) solid;
   border-radius: 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  
+  &_info {
+    display: flex;
+    flex-direction: column;
+    
+    h4 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+  
+  &_actions {
+    
+  }
+
   a {
     background-color: var(--accent-1);
   }
