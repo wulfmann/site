@@ -73,6 +73,7 @@ function OSS() {
 
       <Layout>
         <h1>Open Source Software</h1>
+        <p>Select Projects</p>
         
         <div className="projects">
           {
@@ -83,6 +84,10 @@ function OSS() {
               />
             ))
           }
+        </div>
+        
+        <div>
+          <h3>View All Projects at <a href ="https://github.com/wulfmann">GitHub</a></h3>
         </div>
       </Layout>
     </>
