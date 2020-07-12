@@ -7,7 +7,8 @@
   "dependencies": {
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "next-mdx-enhanced": "latest"
   },
   "devDependencies": {
     "typescript": "latest",
