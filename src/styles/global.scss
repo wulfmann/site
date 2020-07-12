@@ -39,7 +39,6 @@ header {
 
 footer {
   border-top: 1px var(--accent-1) solid;
-  margin-top: auto;
 }
 
 header,
@@ -64,7 +63,6 @@ footer {
 main {
   padding: 1rem;
   width: 100%;
-  flex: 1 0 auto;
 }
 
 a {
@@ -86,12 +84,8 @@ ul {
   padding: 0;
   
   li {
-    margin: 0;
-    padding: 0;
-    margin-bottom: 1rem;
-    
-    &:last-child {
-      margin-bottom: 0;
+    &:not(:last-child) {
+      margin-bottom: 1rem;
     }
     
     a {
