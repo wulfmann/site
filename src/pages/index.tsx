@@ -10,7 +10,7 @@ function Home() {
       </Head>
 
       <Layout>
-        <h2>Designer & Developer building apps and tools <a href="https://daveramsey.com">@RamseySolutions</a> during the day, and <a href="https://nativekit.app">@NativeKit</a> at night.</h2>
+        <h2>Designer & Developer building apps and tools <a href="https://daveramsey.com">@RamseySolutions</a> by day, and <a href="https://nativekit.app">@NativeKit</a> by night.</h2>
       </Layout>
     </>
   );
