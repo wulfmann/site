@@ -14,9 +14,8 @@ function Post(frontMatter) {
       
       <TwitterCard
         title={frontMatter.title}
-      
-      description={frontMatter.description}
-        
+        description={frontMatter.description}
+        image=''
       />
 
       <Header />
