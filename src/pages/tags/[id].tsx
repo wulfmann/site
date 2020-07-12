@@ -15,6 +15,8 @@ function Tag({ tag }) {
   );
 }
 
+export default Tag;
+
 export async function getStaticPaths() {
   return {
     paths: [
