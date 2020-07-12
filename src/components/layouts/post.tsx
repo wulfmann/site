@@ -3,7 +3,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 
 function Post(frontMatter) {
-  return({ children }) (
+  return ({ children }) => (
     <div className="default-layout">
       <Head>
         <title>Joe Snell - {frontMatter.title}</title>
