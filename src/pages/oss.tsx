@@ -67,8 +67,8 @@ function OSS() {
   return (
     <>
       <Head>
-        <title>Joe Snell</title>
-        <meta name="description" content="Joe Snell - Designer/Developer" />
+        <title>Joe Snell- Open Source</title>
+        <meta name="description" content="Joe Snell - Open Source" />
       </Head>
 
       <Layout>
