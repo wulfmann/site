@@ -10,7 +10,7 @@ function Project({ title, href, description }) {
       </div>
 
       <div className="project_actions">
-        <a href={href}>View Project</a>
+        <a href={href}>View</a>
       </div>
     </div>
   );
