@@ -67,7 +67,7 @@ main {
 
 a {
   text-decoration: underline;
-  text-underline-offset: 1px;
+  text-underline-offset: .5rem;
   text-decoration-thickness: 2px;
   text-decoration-skip-ink: auto;
   color: var(--foreground);
@@ -109,7 +109,7 @@ p {
 
 h2 {
   font-size: 2rem;
-  line-height: 3.25rem;
+  line-height: 3rem;
   
   a {
     font-size: 2rem;
