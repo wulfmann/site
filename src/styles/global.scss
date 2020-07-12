@@ -68,11 +68,12 @@ main {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 1px;
+  text-decoration-thickness: 2px;
+  text-decoration-skip-ink: auto;
+
   color: var(--foreground);
-  padding-bottom: 1px;
-  border-bottom: 2px var(--accent-1) solid;
-  transition: border-color 150ms ease-in-out;
 
   &:hover,
   &:active {
