@@ -67,6 +67,7 @@ main {
 
 a {
   text-decoration: underline;
+  text-decoration-color: var(--accent-1);
   text-underline-offset: .25rem;
   text-decoration-thickness: 2px;
   text-decoration-skip-ink: auto;
@@ -74,7 +75,7 @@ a {
 
   &:hover,
   &:active {
-    border-color: var(--foreground);
+    text-decoration-color: var(--foreground);
   }
 }
 
