@@ -136,10 +136,12 @@ h2 {
   }
   
   &_actions {
-    
+    display: flex;
+    align-items: center;
   }
 
   a {
     background-color: var(--accent-1);
+    padding: .5rem;
   }
 }
