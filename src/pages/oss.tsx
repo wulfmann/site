@@ -63,7 +63,7 @@ function OSS() {
       description: 'Utility for resolving SSM Parameters and Secretsmanager Secrets',
       href: 'https://github.com/wulfmann/env-resolver'
     }
-  ].sort((a, b) => a.name > b.name ? 1 : a < b ? -1 : 0);
+  ].sort((a, b) => a.title > b.title ? 1 : a.title < b.title ? -1 : 0);
 
   return (
     <>
