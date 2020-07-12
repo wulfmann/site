@@ -20,7 +20,7 @@ function OSS() {
   const projects = [
     {
       title: 'auto-cdk',
-      description: '',
+      description: 'Effortless APIs with CDK',
       href: 'https://github.com/wulfmann/auto-cdk'
     },
     {
@@ -30,35 +30,41 @@ function OSS() {
     },
     {
       title: 'create-cdk-app',
-      description: '',
+      description: 'Create CDK Apps from Templates',
       href: 'https://github.com/cdk-tools/create-cdk-app'
     },
     {
       title: 'ircra',
-      description: '',
+      description: 'IRCRA Climbing Route Grade Conversion Tool',
       href: 'https://github.com/wulfmann/ircra'
     },
     {
       title: 'cdk-experiments',
-      description: '',
+      description: 'Experimental CDK Patterns',
       href: 'https://github.com/wulfmann/cdk-experiments'
     },
     {
       title: 'pin-latest',
-      description: '',
+      description: 'Easily resolve "latest" versions',
       href: 'https://github.com/wulfmann/pin-latest'
     },
     {
       title: 'use-okta',
-      description: '',
+      description: 'React Hooks for OKTA',
       href: 'https://github.com/wulfmann/use-okta'
     },
     {
       title: 'jtx',
-      description: '',
+      description: 'Tiny JSON to XML Utility',
       href: 'https://github.com/wulfmann/jtx'
+    },
+    {
+      title: 'env-resolver',
+      description: '
+Utility for resolving SSM Parameters and Secretsmanager Secrets',
+      href: 'https://github.com/wulfmann/env-resolver'
     }
-  ].sort((a, b) => a.name > b.name);
+  ].sort((a, b) => a.name > b.name ? 1 : a < b ? -1 : 0);
 
   return (
     <>
