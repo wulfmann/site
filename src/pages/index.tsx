@@ -10,7 +10,6 @@ function Home() {
       </Head>
 
       <Layout>
-        <p>Designer & Developer</p>
       </Layout>
     </>
   );
