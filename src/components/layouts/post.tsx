@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Header from '../Header';
 import Footer from '../Footer';
 
@@ -11,7 +12,17 @@ function Post(frontMatter) {
       </Head>
       <Header />
       
-      <main>{children}</main>
+      <main>
+        <div className="tags">
+          {frontMatter.tags.map((tag, idx) => (
+            <Link href={`/tags/${tag}`}>
+              <a key={idx} className="tag">{tag}</a>
+            </Link>
+          ))}
+        </div>
+
+        <article>{children}</article>
+      </main>
       
       <Footer />
     </div>
