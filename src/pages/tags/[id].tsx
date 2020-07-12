@@ -15,6 +15,14 @@ function Tag({ tag }) {
   );
 }
 
+export async function getStaticProps({ params }) {
+  return {
+    props: {
+      tag: params.tag
+    }
+  }
+}
+
 export async function getStaticPaths() {
   return {
     paths: [
