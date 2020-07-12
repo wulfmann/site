@@ -33,7 +33,7 @@ function OSS() {
         <div>
           {projects.map((project, idx) => (
             <Project {...project} key={idx} />
-          ));
+          )});
         </div>
       </Layout>
     </>
