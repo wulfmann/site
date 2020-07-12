@@ -57,8 +57,8 @@ footer {
   flex-direction: column;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  min-height: 100%;
-  // min-height: -webkit-fill-available;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 main {
