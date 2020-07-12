@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Layout from '../../components/layouts/default';
 
 function Tags({ children }) {
+  const tag = 'test';
+
   return (
     <Layout>
       <Head>
