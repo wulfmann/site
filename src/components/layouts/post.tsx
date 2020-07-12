@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../Header';
 import Footer from '../Footer';
+import TwitterCard from '../seo/TwitterCard';
 
 function Post(frontMatter) {
   return ({ children }) => (
@@ -10,6 +11,14 @@ function Post(frontMatter) {
         <title>Joe Snell - {frontMatter.title}</title>
         <meta name="description" content="Joe Snell - {frontMatter.description}" />
       </Head>
+      
+      <TwitterCard
+        title={frontMatter.title}
+      
+      description={frontMatter.description}
+        
+      />
+
       <Header />
       
       <main>
