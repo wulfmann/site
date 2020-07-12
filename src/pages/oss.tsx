@@ -24,7 +24,7 @@ function OSS() {
     },
     {
       title: 'am-i-alone',
-      description: '',
+      description: 'Is anyone else here?',
       href: 'https://github.com/wulfmann/am-i-alone'
     },
     {
@@ -37,11 +37,13 @@ function OSS() {
       description: 'IRCRA Climbing Route Grade Conversion Tool',
       href: 'https://github.com/wulfmann/ircra'
     },
+    /*
     {
       title: 'cdk-experiments',
       description: 'Experimental CDK Patterns',
       href: 'https://github.com/wulfmann/cdk-experiments'
     },
+    */
     {
       title: 'pin-latest',
       description: 'Easily resolve "latest" versions',
@@ -49,7 +51,7 @@ function OSS() {
     },
     {
       title: 'use-okta',
-      description: 'React Hooks for OKTA',
+      description: 'React Hooks for Okta',
       href: 'https://github.com/wulfmann/use-okta'
     },
     {
@@ -57,11 +59,13 @@ function OSS() {
       description: 'Tiny JSON to XML Utility',
       href: 'https://github.com/wulfmann/jtx'
     },
+    /*
     {
       title: 'env-resolver',
       description: 'Utility for resolving SSM Parameters and Secretsmanager Secrets',
       href: 'https://github.com/wulfmann/env-resolver'
     }
+    */
   ].sort((a, b) => a.title > b.title ? 1 : a.title < b.title ? -1 : 0);
 
   return (
@@ -87,7 +91,7 @@ function OSS() {
         </div>
         
         <div className="cta">
-          <h3>View All Projects at <a href ="https://github.com/wulfmann">GitHub</a></h3>
+          <h3>View All Projects on <a href ="https://github.com/wulfmann">GitHub</a></h3>
         </div>
       </Layout>
     </>
