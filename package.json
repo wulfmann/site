@@ -5,8 +5,6 @@
     "build": "next build && next export"
   },
   "dependencies": {
-    "@mdx-js/loader": "latest",
-    "@next/mdx": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
