@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Layout from '../components/layouts/default';
 
 function Blog() {
@@ -14,6 +15,14 @@ function Blog() {
         
         <div>
           <h2>Recent Posts</h2>
+          
+          <Link href="/posts">View More</Link>
+        </div>
+        
+        <div>
+          <h2>Featured Guides</h2>
+          
+          <Link href="/tags/guides">View All</Link>
         </div>
       </Layout>
     </>
