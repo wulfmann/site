@@ -10,6 +10,10 @@ function Post(frontMatter) {
       <Head>
         <title>Joe Snell - {frontMatter.title}</title>
         <meta name="description" content="Joe Snell - {frontMatter.description}" />
+        {%<meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />%}
       </Head>
       
       <TwitterCard
@@ -20,7 +24,7 @@ function Post(frontMatter) {
 
       <Header />
       
-      <main>
+      <main className="post">
         <h1>{frontMatter.title}</h1>
 
         <div className="tags">
