@@ -10,10 +10,6 @@ function Post(frontMatter) {
       <Head>
         <title>Joe Snell - {frontMatter.title}</title>
         <meta name="description" content="Joe Snell - {frontMatter.description}" />
-        {%<meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />%}
       </Head>
       
       <TwitterCard
