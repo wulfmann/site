@@ -18,7 +18,7 @@ function Tag({ tag }) {
 export async function getStaticProps({ params }) {
   return {
     props: {
-      tag: params.tag
+      tag: params.id
     }
   }
 }
@@ -27,7 +27,7 @@ export async function getStaticPaths() {
   return {
     paths: [
       {
-        params: { tag: 'test' }
+        params: { id: 'test' }
       }
     ],
     fallback: false
