@@ -4,7 +4,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import TwitterCard from '../seo/TwitterCard';
 
-function Post(frontMatter) {
+function Index(frontMatter) {
   return ({ children }) => (
     <div className="default-layout">
       <Head>
@@ -23,15 +23,7 @@ function Post(frontMatter) {
       <main className="post">
         <h1>{frontMatter.title}</h1>
 
-        <div className="tags">
-          {frontMatter.tags.map((tag, idx) => (
-            <Link href={`/tags/${tag}`}>
-              <a key={idx} className="tag">{tag}</a>
-            </Link>
-          ))}
-        </div>
-
-        <article>{children}</article>
+        {children}
       </main>
       
       <Footer />
@@ -39,4 +31,4 @@ function Post(frontMatter) {
   );
 }
 
-export default Post;
+export default Index;
